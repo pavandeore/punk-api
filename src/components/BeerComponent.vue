@@ -1,11 +1,12 @@
 <template>
+        <input class="input" type="text" v-model="search" placeholder="search beers"/>
         <div v-for="beer in Beers" :key="beer.id" id="beer-compo" >
             <div id="each-beer">
-                <h3>Beer No : {{beer.id}} </h3>
-                <h3>Name : {{beer.name}} </h3>
-                <h3>Tag : {{beer.tagline}} </h3>
-                <h3>ABV : {{beer.abv}} </h3>
-                <h3>Attenuation Level : {{beer.attenuation_level}} </h3>
+                <h3><label>Beer No : </label>{{beer.id}} </h3>
+                <h3><label>Name : </label>{{beer.name}} </h3>
+                <h3><label>Tag : </label>{{beer.tagline}} </h3>
+                <h3><label>ABV : </label>{{beer.abv}} </h3>
+                <h3><label>Attenuation Level : </label>{{beer.attenuation_level}} </h3>
                 <img class="beer-img" :src="beer.image_url" />
             </div>
         </div>    
@@ -37,6 +38,9 @@ export default {
 </script>
 
 <style scoped>
+.input{
+    position: absolute;
+}
 #beer-compo{
     width:290px;
     background-color: darkcyan;
@@ -46,6 +50,9 @@ export default {
 }
 #each-beer > h3{
     margin-top:15px;
+}
+#each-beer > h3 > label{
+    color: rgb(53, 54, 48);
 }
 .beer-img{
     height:220px;
