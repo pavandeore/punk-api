@@ -1,6 +1,6 @@
 <template>
         <input class="input" type="text" v-model="search" placeholder="search beers"/>
-        <div v-for="beer in Beers" :key="beer.id" id="beer-compo" >
+        <div v-for="beer in filteredBeers" :key="beer.id" id="beer-compo" >
             <div id="each-beer">
                 <h3><label>Beer No : </label>{{beer.id}} </h3>
                 <h3><label>Name : </label>{{beer.name}} </h3>
@@ -23,7 +23,8 @@ export default {
     data(){
         return{
             Beers : [],
-            errorMsg: ''
+            errorMsg: '',
+            search: ''
         }
     },
     methods: {
@@ -32,6 +33,13 @@ export default {
             const data = await response;
             
             this.Beers = data.data; 
+        }
+    },
+    computed: {
+        filteredBeers: function(){
+            return this.Beers.filter((beer)=>{
+                return beer.name.toLowerCase().match(this.search)
+            });
         }
     }
 }
